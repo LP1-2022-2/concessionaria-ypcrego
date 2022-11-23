@@ -1,9 +1,9 @@
-#include "executor.h"
+#include "../include/executor.h"
+#include <iostream>
 #include <istream>
 #include <ostream>
-#include <iostream>
-#include <sstream>
 #include <queue>
+#include <sstream>
 
 using namespace std;
 
@@ -28,12 +28,12 @@ Executor::Executor(Sistema &sistema) {
 // Inicia o processamento dos comentarios.
 // Esse método recebe por exemplo o "cin" e o "cout" no main
 // Dessa forma ele faz o necessário para ler 1 comando por linha e
-// o processar corretamente, colocando no stream de saída o resultado de cada um.
+// o processar corretamente, colocando no stream de saída o resultado de cada
+// um.
 void Executor::iniciar(istream &inputStream, ostream &outputStream) {
   string linha, saida;
   this->sair = false;
-  while (! this->sair)
-  {
+  while (!this->sair) {
     if (std::getline(inputStream, linha)) {
       saida = processarLinha(linha);
       outputStream << saida << endl;
@@ -52,18 +52,14 @@ string Executor::processarLinha(string linha) {
     return "Comando Inválido <vazio>";
   }
 
-  if (nomeComando == "quit" ) {
+  if (nomeComando == "quit") {
     this->sair = true;
     return sistema->quit();
-  }
-  else if (nomeComando == "create-concessionaria") {
-    string nome;    
+  } else if (nomeComando == "create-concessionaria") {
+    string nome;
     nome = restoDe(buf);
     return sistema->create_concessionaria(nome);
   }
 
-  return "Erro";	
+  return "Erro";
 }
-
-
-

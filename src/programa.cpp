@@ -1,9 +1,9 @@
+#include "../include/executor.h"
+#include "../include/sistema.h"
 #include <iostream>
 #include <list>
-#include <vector>
 #include <string>
-#include "sistema.h"
-#include "executor.h"
+#include <vector>
 
 using namespace std;
 

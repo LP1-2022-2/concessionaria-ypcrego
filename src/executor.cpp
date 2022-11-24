@@ -4,6 +4,7 @@
 #include <ostream>
 #include <queue>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -56,9 +57,23 @@ string Executor::processarLinha(string linha) {
     this->sair = true;
     return sistema->quit();
   } else if (nomeComando == "create-concessionaria") {
+    string dados = restoDe(buf);
+
+    buf.clear();
+    buf.str(dados);
+
     string nome;
-    nome = restoDe(buf);
-    return sistema->create_concessionaria(nome);
+    buf >> nome;
+
+    string CNPJ;
+    buf >> CNPJ;
+
+    int estoque;
+    buf >> estoque;
+
+    return sistema->create_concessionaria(nome, CNPJ, estoque);
+    /* TODO: Verificar se a linha comentada a seguir ainda pode ser necessária em algum momento (caso de criar concessionária apenas com nome)
+		return sistema->create_concessionaria(nome); */
   }
 
   return "Erro";

@@ -1,6 +1,7 @@
 #ifndef CONCESSIONARIA_H
 #define CONCESSIONARIA_H
 
+#include <ostream>
 #include <string>
 
 using std::string;
@@ -10,7 +11,9 @@ public:
   string nome;
   string CNPJ;
   int estoque;
-  // vector<Veiculos>
+  Concessionaria(string nome, string CNPJ, int estoque);
+  friend std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc);
+  // TODO: vector<Veiculos>
 };
 
 #endif

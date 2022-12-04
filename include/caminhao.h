@@ -9,8 +9,10 @@ using std::string;
 class Caminhao : public Veiculo {
 public:
   string tipoCarga;
- // Caminhao(string marca, double preco, string chassi, int anoFabricacao, string tipoCarga);
- Caminhao(string tipoCarga);
+  Caminhao(string marca, double preco, int anoFabricacao, string tipoCarga);
+
+  string getAtributoRelativo();
+  void setAtributoRelativo(string tipoCarga);
 };
 
 #endif

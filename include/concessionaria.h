@@ -2,23 +2,24 @@
 #define CONCESSIONARIA_H
 
 #include "automovel.h"
+#include "caminhao.h"
+#include "moto.h"
 #include "veiculo.h"
+#include <map>
 #include <ostream>
 #include <string>
-#include <vector>
 
+using std::map;
 using std::string;
-using std::vector;
 
 class Concessionaria {
 public:
-  string nome;
   string CNPJ;
   int estoque;
-  Concessionaria(string nome, string CNPJ, int estoque);
+  Concessionaria(string CNPJ, int estoque);
   friend std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc);
-  vector<Veiculo> veiculos;
-	void addVeiculo(Veiculo vv);
+  map<string, Veiculo> veiculos;
+  void addVeiculo(Veiculo vv);
 };
 
 #endif

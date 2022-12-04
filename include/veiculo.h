@@ -9,8 +9,9 @@ class Veiculo {
 public:
   string marca;
   double preco;
-  string chassi;
   int anoFabricacao;
+  virtual string getAtributoRelativo();
+  virtual void setAtributoRelativo(string atributoRelativo){};
 };
 
 #endif

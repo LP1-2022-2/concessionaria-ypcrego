@@ -9,7 +9,11 @@ using std::string;
 class Moto : public Veiculo {
 public:
   string modelo;
-  Moto(string modelo);
+  Moto(string marca, double preco, int anoFabricacao, string modelo);
+
+  string getAtributoRelativo();
+
+  void setAtributoRelativo(string modelo);
 };
 
 #endif

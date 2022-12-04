@@ -75,7 +75,8 @@ string Executor::processarLinha(string linha) {
     /* TODO: Verificar se a linha comentada a seguir ainda pode ser necessária
        em algum momento (caso de criar concessionária apenas com nome) return
        sistema->create_concessionaria(nome); */
-  } else if (nomeComando == "add-car") {
+  } else if (nomeComando == "add-car" || nomeComando == "add-bike" ||
+             nomeComando == "add-truck") {
     string dados = restoDe(buf);
 
     buf.clear();
@@ -84,9 +85,9 @@ string Executor::processarLinha(string linha) {
     string nome;
     buf >> nome;
 
-    // if (!sistema->busca_concessionaria(nome)) {
-    //   return "Concessionaria nao criada!";
-    // }
+    if (!sistema->busca_concessionaria(nome)) {
+      return "Concessionaria nao criada!";
+    }
 
     string marca;
     buf >> marca;
@@ -100,37 +101,40 @@ string Executor::processarLinha(string linha) {
     int anoFabricacao;
     buf >> anoFabricacao;
 
-    string tipoMotor;
-    buf >> tipoMotor;
+    // string tipoMotor;
+    // buf >> tipoMotor;
 
-    Veiculo c = Automovel(marca, preco, chassi, anoFabricacao, tipoMotor);
+    string atributoRelativo;
+    buf >> atributoRelativo;
 
-		// Tamanhos diferentes e eu não sei pq vou chorarrr
-    for (int ii = 0; ii < sistema->getConcessionarias().size(); ii++) {
-      if (sistema->getConcessionarias()[ii].nome == nome) {
-        sistema->getConcessionarias()[ii].addVeiculo(c);
-        vector<Veiculo>::iterator it;
-         cout << "2 Tamanho de veiculos : "
-        << sistema->getConcessionarias()[ii].veiculos.size() << endl;
-        for (it = sistema->getConcessionarias()[ii].veiculos.begin();
-             it != sistema->getConcessionarias()[ii].veiculos.end(); ++it) {
-          std::cout << "Tipo : " << (*it).marca << std::endl;
-        }
-      }
+    Veiculo vv;
+
+    if (nomeComando == "add-car") {
+      vv = Automovel(marca, preco, anoFabricacao, atributoRelativo);
     }
 
-    // O veiculo parece estar sendo adicionado la em concessionaria.cpp, mas nao
-    // é impresso aqui embaixo. Verificar pq.
-    for (int ii = 0; ii < sistema->getConcessionarias().size(); ii++) {
-      vector<Veiculo>::iterator it;
-      for (it = sistema->getConcessionarias()[ii].veiculos.begin();
-           it != sistema->getConcessionarias()[ii].veiculos.end(); ++it) {
-        std::cout << "Tipo : " << (*it).marca << std::endl;
-      }
+    else if (nomeComando == "add-bike") {
+      vv = Moto(marca, preco, anoFabricacao, atributoRelativo);
     }
-    // for (it = codigos.begin(); it != codigos.end(); ++it) {
-    // Iteracao sobre os elementos do vetor utilizando o iterador it
-    //}
+
+    else if (nomeComando == "add-truck") {
+      vv = Caminhao(marca, preco, anoFabricacao, atributoRelativo);
+    }
+
+    return sistema->create_veiculo(nome, chassi, vv);
+
+    /* Concessionaria cc = sistema->getConcessionarias().at(nome);
+
+     cout << cc.veiculos.at(chassi).marca;*/
+
+  } else if (nomeComando == "search-vehicle") {
+    string inputChassi = restoDe(buf);
+    return sistema->search_vehicle(inputChassi);
+  } else if (nomeComando == "remove-vehicle") {
+    string inputChassi = restoDe(buf);
+    return sistema->remove_vehicle(inputChassi);
+  } else {
+    return "Comando não reconhecido!";
   }
 
   return "Erro";

@@ -3,20 +3,21 @@
 #include "concessionaria.h"
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <string>
-#include <vector>
 
+using std::map;
 using std::string;
-
 // Sistema deve concentrar todas as operações
 class Sistema {
 private:
-  std::vector<Concessionaria>
+  map<string, Concessionaria>
       concessionarias; // um vetor com todos as concessionarias
 
 public:
-std::vector<Concessionaria> getConcessionarias();
+  // Modificar abaixo
+  std::map<string, Concessionaria> getConcessionarias();
   /* Cria uma concessionaria e retorna uma string de erro/sucesso
            @param nome o nome da concessionaria
            @return uma string contendo uma mensagem de erro ou "Concessionaria
@@ -36,9 +37,13 @@ std::vector<Concessionaria> getConcessionarias();
 
   bool busca_concessionaria(string nome);
 
-  bool create_car(const string nome, const string CNPJ, const int estoque);
+  string create_veiculo(string nome, string chassi, Veiculo cc);
 
+  string search_vehicle(string inputChassi);
 
+  friend std::ostream &operator<<(std::ostream &oo, Veiculo const &vv);
+
+  string remove_vehicle(string inputChassi);
 };
 
 #endif

@@ -107,21 +107,23 @@ string Executor::processarLinha(string linha) {
     string atributoRelativo;
     buf >> atributoRelativo;
 
-    Veiculo vv;
-
     if (nomeComando == "add-car") {
-      vv = Automovel(marca, preco, anoFabricacao, atributoRelativo);
+      Automovel aa(marca, preco, anoFabricacao, atributoRelativo);
+      return sistema->create_car(nome, chassi, aa);
+
     }
 
     else if (nomeComando == "add-bike") {
-      vv = Moto(marca, preco, anoFabricacao, atributoRelativo);
+      Moto mm(marca, preco, anoFabricacao, atributoRelativo);
+      return sistema->create_bike(nome, chassi, mm);
     }
 
     else if (nomeComando == "add-truck") {
-      vv = Caminhao(marca, preco, anoFabricacao, atributoRelativo);
+      Caminhao tt(marca, preco, anoFabricacao, atributoRelativo);
+      return sistema->create_truck(nome, chassi, tt);
     }
 
-    return sistema->create_veiculo(nome, chassi, vv);
+    //  return sistema->create_veiculo(nome, chassi, vv);
 
     /* Concessionaria cc = sistema->getConcessionarias().at(nome);
 
@@ -133,6 +135,9 @@ string Executor::processarLinha(string linha) {
   } else if (nomeComando == "remove-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->remove_vehicle(inputChassi);
+  } else if (nomeComando == "list-concessionaria") {
+    string nome = restoDe(buf);
+    return sistema->list_concessionaria(nome);
   } else {
     return "Comando não reconhecido!";
   }

@@ -13,4 +13,8 @@ Automovel::Automovel(string marca, double preco, int anoFabricacao,
 
 string Automovel::getAtributoRelativo() { return tipoMotor; }
 
-void Automovel::setAtributoRelativo(string tipoMotor) { this->tipoMotor = tipoMotor; }
+void Automovel::setAtributoRelativo(string tipoMotor) {
+  this->tipoMotor = tipoMotor;
+}
+
+string const Automovel::nomeClasse() { return "Automovel"; }

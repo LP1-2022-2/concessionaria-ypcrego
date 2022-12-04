@@ -1,5 +1,8 @@
 #include "sistema.h"
 
+// TODO mexer com smart pointers pra consertar o vetor
+// Ou TODO criar 3 vetores
+
 /* COMANDOS */
 string Sistema::quit() { return "Saindo..."; }
 
@@ -15,7 +18,7 @@ string Sistema::create_concessionaria(const string nome, const string CNPJ,
                 cout << endl << *it << endl;
 */
 
-  return "Concessionária criada!";
+  return "Concessionária criada!\n";
 }
 
 std::map<string, Concessionaria> Sistema::getConcessionarias() {
@@ -26,48 +29,126 @@ bool Sistema::busca_concessionaria(string nome) {
   return (concessionarias.count(nome) == 1);
 }
 
-string Sistema::create_veiculo(string nome, string chassi, Veiculo vv) {
+string Sistema::veiculoCriado(string *chassi) {
 
-  if (concessionarias.at(nome).veiculos.count(chassi) > 0) {
-		
-    std::ostringstream oo;
-    oo << "ERRO - Veículo " << chassi << " já adicionado à concessionária "
-       << nome;
-		
-    return oo.str();
+  for (map<string, Concessionaria>::iterator it = concessionarias.begin();
+       it != concessionarias.end(); ++it) {
+
+    if (concessionarias.at(it->first).carros.count(*chassi) > 0 ||
+        concessionarias.at(it->first).motos.count(*chassi) > 0 ||
+        concessionarias.at(it->first).caminhoes.count(*chassi) > 0) {
+
+      std::ostringstream oo;
+      oo << "ERRO - Veículo " << *chassi << " já adicionado à concessionária "
+         << it->first;
+
+      return oo.str();
+    }
   };
 
-  concessionarias.at(nome).veiculos.insert(
-      std::pair<string, Veiculo>(chassi, vv));
-  return "\0";
+  return "OK";
+}
+
+string Sistema::create_car(string nome, string chassi, Automovel aa) {
+
+  string returnVeiculoCriado = veiculoCriado(&chassi);
+  if (returnVeiculoCriado != "OK") {
+    return returnVeiculoCriado;
+  }
+
+  concessionarias.at(nome).carros.insert(
+      std::pair<string, Automovel>(chassi, aa));
+
+  (concessionarias.at(nome).estoque)++;
+
+  return "Veículo criado!\n";
+}
+
+string Sistema::create_bike(string nome, string chassi, Moto mm) {
+
+  string returnVeiculoCriado = veiculoCriado(&chassi);
+  if (returnVeiculoCriado != "OK") {
+    return returnVeiculoCriado;
+  }
+
+  concessionarias.at(nome).motos.insert(std::pair<string, Moto>(chassi, mm));
+
+  (concessionarias.at(nome).estoque)++;
+
+  return "Veículo criado!\n";
+}
+
+string Sistema::create_truck(string nome, string chassi, Caminhao tt) {
+
+  string returnVeiculoCriado = veiculoCriado(&chassi);
+  if (returnVeiculoCriado != "OK") {
+    return returnVeiculoCriado;
+  }
+
+  concessionarias.at(nome).caminhoes.insert(
+      std::pair<string, Caminhao>(chassi, tt));
+
+  (concessionarias.at(nome).estoque)++;
+
+  return "Veículo criado!\n";
 }
 
 string Sistema::search_vehicle(string inputChassi) {
   for (map<string, Concessionaria>::iterator it = concessionarias.begin();
        it != concessionarias.end(); ++it) {
 
-    if ((it->second).veiculos.find(inputChassi) ==
-        (it->second).veiculos.end()) {
+    if ((it->second).carros.find(inputChassi) != (it->second).carros.end()) {
 
-      continue;
+      map<string, Automovel>::iterator itVeiculo =
+          (it->second).carros.find(inputChassi);
 
-    } else {
+      Automovel aa = itVeiculo->second;
 
-      map<string, Veiculo>::iterator itVeiculo =
-          (it->second).veiculos.find(inputChassi);
-      Veiculo vv = itVeiculo->second;
-
-      //	std::cout << "Atributo especial: " << vv.getAtributoRelativo()
-      //<< std::endl;
       std::ostringstream oo;
       oo << "Concessionaria: " << it->first << std::endl;
-      oo << "Marca: " << vv.marca << std::endl;
-      oo << "Preço: " << vv.preco << std::endl;
+      oo << "Marca: " << aa.marca << std::endl;
+      oo << "Preço: " << aa.preco << std::endl;
       oo << "Chassi: " << itVeiculo->first << std::endl;
-      oo << "Preço: " << vv.anoFabricacao << std::endl;
+      oo << "Ano: " << aa.anoFabricacao << std::endl;
+      oo << "Tipo de motor: " << aa.tipoMotor << std::endl;
+      return oo.str();
+    }
+
+    else if ((it->second).motos.find(inputChassi) != (it->second).motos.end()) {
+      map<string, Moto>::iterator itVeiculo =
+          (it->second).motos.find(inputChassi);
+
+      Moto mm = itVeiculo->second;
+
+      std::ostringstream oo;
+      oo << "Concessionaria: " << it->first << std::endl;
+      oo << "Marca: " << mm.marca << std::endl;
+      oo << "Preço: " << mm.preco << std::endl;
+      oo << "Chassi: " << itVeiculo->first << std::endl;
+      oo << "Ano: " << mm.anoFabricacao << std::endl;
+      oo << "Modelo: " << mm.modelo << std::endl;
+      return oo.str();
+    }
+
+    else if ((it->second).caminhoes.find(inputChassi) !=
+             (it->second).caminhoes.end()) {
+
+      map<string, Caminhao>::iterator itVeiculo =
+          (it->second).caminhoes.find(inputChassi);
+
+      Caminhao tt = itVeiculo->second;
+
+      std::ostringstream oo;
+      oo << "Concessionaria: " << it->first << std::endl;
+      oo << "Marca: " << tt.marca << std::endl;
+      oo << "Preço: " << tt.preco << std::endl;
+      oo << "Chassi: " << itVeiculo->first << std::endl;
+      oo << "Ano: " << tt.anoFabricacao << std::endl;
+      oo << "Tipo de carga: " << tt.tipoCarga << std::endl;
       return oo.str();
     }
   }
+
   std::ostringstream oo;
   oo << "Veículo não encontrado!";
   return oo.str();
@@ -77,34 +158,112 @@ string Sistema::search_vehicle(string inputChassi) {
 // veículo).
 
 string Sistema::remove_vehicle(string inputChassi) {
+  bool removido = false;
+  map<string, Concessionaria>::iterator itEncontrado;
   for (map<string, Concessionaria>::iterator it = concessionarias.begin();
        it != concessionarias.end(); ++it) {
 
-    if ((it->second).veiculos.find(inputChassi) ==
-        (it->second).veiculos.end()) {
+    if ((it->second).carros.find(inputChassi) != (it->second).carros.end()) {
 
-      continue;
+      itEncontrado = it;
 
+      map<string, Automovel>::iterator itVeiculo =
+          (it->second).carros.find(inputChassi);
+
+      (it->second).carros.erase(itVeiculo);
+
+      removido = true;
+      break;
     }
 
-    else {
+    if ((it->second).motos.find(inputChassi) != (it->second).motos.end()) {
 
-      map<string, Veiculo>::iterator itVeiculo =
-          (it->second).veiculos.find(inputChassi);
+      itEncontrado = it;
 
-      Veiculo vv = itVeiculo->second;
-      (it->second).veiculos.erase(itVeiculo);
+      map<string, Moto>::iterator itVeiculo =
+          (it->second).motos.find(inputChassi);
 
-      std::ostringstream oo;
-      oo << "Veículo " << inputChassi << " removido da concessionária "
-         << (it->first);
-      return oo.str();
+      (it->second).motos.erase(itVeiculo);
+
+      removido = true;
+      break;
+    }
+
+    if ((it->second).caminhoes.find(inputChassi) !=
+        (it->second).caminhoes.end()) {
+
+      itEncontrado = it;
+
+      map<string, Caminhao>::iterator itVeiculo =
+          (it->second).caminhoes.find(inputChassi);
+
+      (it->second).caminhoes.erase(itVeiculo);
+
+      removido = true;
+      break;
     }
   }
 
   std::ostringstream oo;
+
+  if (removido) {
+    oo << "Veículo " << inputChassi << " removido da concessionária "
+       << (itEncontrado->first);
+    return oo.str();
+  }
+
   oo << "Veículo não encontrado!";
 
+  return oo.str();
+}
+
+string Sistema::list_concessionaria(string nome) {
+  std::vector<double> somas;
+  double temp_soma = 0;
+
+  for (map<string, Automovel>::iterator it =
+           concessionarias.at(nome).carros.begin();
+       it != concessionarias.at(nome).carros.end(); ++it) {
+    temp_soma += (it->second).preco;
+  }
+
+  somas.push_back(temp_soma);
+
+  temp_soma = 0;
+
+  for (map<string, Moto>::iterator it = concessionarias.at(nome).motos.begin();
+       it != concessionarias.at(nome).motos.end(); ++it) {
+    temp_soma += (it->second).preco;
+  }
+
+  somas.push_back(temp_soma);
+
+  temp_soma = 0;
+
+  for (map<string, Caminhao>::iterator it =
+           concessionarias.at(nome).caminhoes.begin();
+       it != concessionarias.at(nome).caminhoes.end(); ++it) {
+    temp_soma += (it->second).preco;
+  }
+
+  somas.push_back(temp_soma);
+
+  temp_soma = 0;
+
+  std::ostringstream oo;
+  oo << "Concessionaria " << nome << std::endl;
+
+  oo << "Total de Automóveis: " << concessionarias.at(nome).carros.size()
+     << "; Valor total: R$ " << somas[0] << std::endl;
+
+  oo << "Total de Motos: " << concessionarias.at(nome).motos.size()
+     << "; Valor total: R$ " << somas[1] << std::endl;
+
+  oo << "Total de Caminhões: " << concessionarias.at(nome).caminhoes.size()
+     << "; Valor total: R$ " << somas[2] << std::endl;
+
+  oo << "Valor total da frota: R$ "
+     << std::accumulate(somas.begin(), somas.end(), 0) << std::endl;
   return oo.str();
 }
 

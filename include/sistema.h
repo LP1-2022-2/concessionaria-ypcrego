@@ -6,6 +6,8 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <numeric> 
 
 using std::map;
 using std::string;
@@ -37,13 +39,25 @@ public:
 
   bool busca_concessionaria(string nome);
 
-  string create_veiculo(string nome, string chassi, Veiculo cc);
+
+string veiculoCriado(string *chassi);
+
+
+  // string create_veiculo(string nome, string chassi, Veiculo *vv);
+
+  string create_car(string nome, string chassi, Automovel aa);
+
+  string create_bike(string nome, string chassi, Moto mm);
+
+  string create_truck(string nome, string chassi, Caminhao tt);
 
   string search_vehicle(string inputChassi);
 
   friend std::ostream &operator<<(std::ostream &oo, Veiculo const &vv);
 
   string remove_vehicle(string inputChassi);
+
+string list_concessionaria(string nome);
 };
 
 #endif

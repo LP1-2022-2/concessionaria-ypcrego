@@ -19,7 +19,10 @@ public:
   Concessionaria(string CNPJ, int estoque);
   friend std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc);
   map<string, Veiculo> veiculos;
-  void addVeiculo(Veiculo vv);
+  map<string, Automovel> carros;
+  map<string, Caminhao> caminhoes;
+  map<string, Moto> motos;
+  void addVeiculo(Veiculo &vv);
 };
 
 #endif

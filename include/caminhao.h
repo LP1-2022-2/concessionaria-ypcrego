@@ -11,8 +11,10 @@ public:
   string tipoCarga;
   Caminhao(string marca, double preco, int anoFabricacao, string tipoCarga);
 
-  string getAtributoRelativo();
-  void setAtributoRelativo(string tipoCarga);
+  string getAtributoRelativo() override;
+  void setAtributoRelativo(string tipoCarga) override;
+
+  string const nomeClasse() override;
 };
 
 #endif

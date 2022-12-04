@@ -17,6 +17,8 @@ public:
   Automovel(string marca, double preco, int anoFabricacao, string tipoMotor);
   string getAtributoRelativo() override;
   void setAtributoRelativo(string tipoMotor) override;
+
+  string const nomeClasse() override;
 };
 
 #endif

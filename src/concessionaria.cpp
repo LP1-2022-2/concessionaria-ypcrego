@@ -17,7 +17,7 @@ std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc) {
   return oo;
 }*/
 
-void Concessionaria::addVeiculo(Veiculo vv) {
+void Concessionaria::addVeiculo(Veiculo &vv) {
   /*
 	veiculos.push_back(vv);
   cout << "Veiculo adicionado com sucesso !" << endl;

@@ -12,6 +12,7 @@ public:
   int anoFabricacao;
   virtual string getAtributoRelativo();
   virtual void setAtributoRelativo(string atributoRelativo){};
+	virtual string const nomeClasse(); 
 };
 
 #endif

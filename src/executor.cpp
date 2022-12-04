@@ -1,4 +1,4 @@
-#include "../include/executor.h"
+#include "executor.h"
 #include <iostream>
 #include <istream>
 #include <ostream>
@@ -72,8 +72,65 @@ string Executor::processarLinha(string linha) {
     buf >> estoque;
 
     return sistema->create_concessionaria(nome, CNPJ, estoque);
-    /* TODO: Verificar se a linha comentada a seguir ainda pode ser necessária em algum momento (caso de criar concessionária apenas com nome)
-		return sistema->create_concessionaria(nome); */
+    /* TODO: Verificar se a linha comentada a seguir ainda pode ser necessária
+       em algum momento (caso de criar concessionária apenas com nome) return
+       sistema->create_concessionaria(nome); */
+  } else if (nomeComando == "add-car") {
+    string dados = restoDe(buf);
+
+    buf.clear();
+    buf.str(dados);
+
+    string nome;
+    buf >> nome;
+
+    // if (!sistema->busca_concessionaria(nome)) {
+    //   return "Concessionaria nao criada!";
+    // }
+
+    string marca;
+    buf >> marca;
+
+    double preco;
+    buf >> preco;
+
+    string chassi;
+    buf >> chassi;
+
+    int anoFabricacao;
+    buf >> anoFabricacao;
+
+    string tipoMotor;
+    buf >> tipoMotor;
+
+    Veiculo c = Automovel(marca, preco, chassi, anoFabricacao, tipoMotor);
+
+		// Tamanhos diferentes e eu não sei pq vou chorarrr
+    for (int ii = 0; ii < sistema->getConcessionarias().size(); ii++) {
+      if (sistema->getConcessionarias()[ii].nome == nome) {
+        sistema->getConcessionarias()[ii].addVeiculo(c);
+        vector<Veiculo>::iterator it;
+         cout << "2 Tamanho de veiculos : "
+        << sistema->getConcessionarias()[ii].veiculos.size() << endl;
+        for (it = sistema->getConcessionarias()[ii].veiculos.begin();
+             it != sistema->getConcessionarias()[ii].veiculos.end(); ++it) {
+          std::cout << "Tipo : " << (*it).marca << std::endl;
+        }
+      }
+    }
+
+    // O veiculo parece estar sendo adicionado la em concessionaria.cpp, mas nao
+    // é impresso aqui embaixo. Verificar pq.
+    for (int ii = 0; ii < sistema->getConcessionarias().size(); ii++) {
+      vector<Veiculo>::iterator it;
+      for (it = sistema->getConcessionarias()[ii].veiculos.begin();
+           it != sistema->getConcessionarias()[ii].veiculos.end(); ++it) {
+        std::cout << "Tipo : " << (*it).marca << std::endl;
+      }
+    }
+    // for (it = codigos.begin(); it != codigos.end(); ++it) {
+    // Iteracao sobre os elementos do vetor utilizando o iterador it
+    //}
   }
 
   return "Erro";

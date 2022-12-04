@@ -9,7 +9,8 @@ using std::string;
 class Caminhao : public Veiculo {
 public:
   string tipoCarga;
-  Caminhao(string marca, double preco, string chassi, int anoFabricacao, string tipoCarga);
+ // Caminhao(string marca, double preco, string chassi, int anoFabricacao, string tipoCarga);
+ Caminhao(string tipoCarga);
 };
 
 #endif

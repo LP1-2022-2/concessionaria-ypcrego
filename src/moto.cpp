@@ -1,1 +1,1 @@
-#include "../include/moto.h"
+#include "moto.h"

@@ -1,5 +1,5 @@
-#include "../include/executor.h"
-#include "../include/sistema.h"
+#include "executor.h"
+#include "sistema.h"
 #include <iostream>
 #include <list>
 #include <string>

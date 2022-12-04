@@ -1,4 +1,8 @@
-#include "../include/concessionaria.h"
+#include "concessionaria.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 Concessionaria::Concessionaria(string nome, string CNPJ, int estoque = 0)
     : nome(nome), CNPJ(CNPJ), estoque(estoque){};
@@ -11,4 +15,11 @@ std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc) {
      << "CNPJ: " << cc.CNPJ << std::endl
      << "Número de veículos: " << cc.estoque << std::endl;
   return oo;
+}
+
+void Concessionaria::addVeiculo(Veiculo vv) {
+  veiculos.push_back(vv);
+  cout << "Veiculo adicionado com sucesso !" << endl;
+  cout << "A marca dele: " << vv.marca << endl;
+  cout << "Tamanho de veiculos: " << veiculos.size() << endl;
 }

@@ -138,6 +138,19 @@ string Executor::processarLinha(string linha) {
   } else if (nomeComando == "list-concessionaria") {
     string nome = restoDe(buf);
     return sistema->list_concessionaria(nome);
+  } else if (nomeComando == "raise-price") {
+    string dados = restoDe(buf);
+
+    buf.clear();
+    buf.str(dados);
+
+    string nome;
+    buf >> nome;
+
+    double porcentagem;
+    buf >> porcentagem;
+
+    return sistema->raise_price(nome, porcentagem);
   } else {
     return "Comando não reconhecido!";
   }

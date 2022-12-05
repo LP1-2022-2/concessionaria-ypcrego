@@ -7,7 +7,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <numeric> 
+#include <numeric>
+#include <iomanip>
 
 using std::map;
 using std::string;
@@ -58,6 +59,8 @@ string veiculoCriado(string *chassi);
   string remove_vehicle(string inputChassi);
 
 string list_concessionaria(string nome);
+
+string raise_price(string nome, double num);
 };
 
 #endif

@@ -254,7 +254,7 @@ string Sistema::list_concessionaria(string nome) {
   oo << "Concessionaria " << nome << std::endl;
 
   oo << "Total de Automóveis: " << concessionarias.at(nome).carros.size()
-     << "; Valor total: R$ " << somas[0] << std::endl;
+     << "; Valor total: R$ " << std::fixed << std::setprecision(2) << somas[0] << std::endl;
 
   oo << "Total de Motos: " << concessionarias.at(nome).motos.size()
      << "; Valor total: R$ " << somas[1] << std::endl;
@@ -264,6 +264,40 @@ string Sistema::list_concessionaria(string nome) {
 
   oo << "Valor total da frota: R$ "
      << std::accumulate(somas.begin(), somas.end(), 0) << std::endl;
+  return oo.str();
+}
+
+string Sistema::raise_price(string nome, double num) {
+  double aumento = 1 + (num / 100.0);
+
+  for (map<string, Automovel>::iterator it =
+           concessionarias.at(nome).carros.begin();
+       it != concessionarias.at(nome).carros.end(); ++it) {
+    (it->second).preco *= aumento;
+  }
+
+  aumento = 2 + (num / 100.0);
+
+  for (map<string, Moto>::iterator it = concessionarias.at(nome).motos.begin();
+       it != concessionarias.at(nome).motos.end(); ++it) {
+    (it->second).preco *= aumento;
+  }
+
+  aumento = 3 + (num / 100.0);
+
+  for (map<string, Caminhao>::iterator it =
+           concessionarias.at(nome).caminhoes.begin();
+       it != concessionarias.at(nome).caminhoes.end(); ++it) {
+    (it->second).preco *= aumento;
+  }
+
+  std::ostringstream oo;
+  oo << "Aumento de 10% nos preços de automovéis da Concessionária " << nome
+     << " realizado" << std::endl;
+  oo << "Aumento de 20% nos preços de motos da Concessionária " << nome
+     << " realizado" << std::endl;
+  oo << "Aumento de 30% nos preços de caminhões da Concessionária " << nome
+     << " realizado" << std::endl;
   return oo.str();
 }
 

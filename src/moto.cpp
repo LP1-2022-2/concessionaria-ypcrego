@@ -6,9 +6,3 @@ Moto::Moto(string marca, double preco, int anoFabricacao, string modelo) : Veicu
   this->anoFabricacao = anoFabricacao;
 	this->modelo = modelo;
 }
-
-string Moto::getAtributoRelativo() { return modelo; }
-
-void Moto::setAtributoRelativo(string modelo) { this->modelo = modelo; }
-
-string const Moto::nomeClasse() { return "Moto"; }

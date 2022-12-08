@@ -1,3 +1,7 @@
+// TODO Verificar se há mais código não-utilizado
+// TODO Verificar possível substituição de atributos públicos por getters e setters
+// TODO Documentar o código
+
 #include "executor.h"
 #include "sistema.h"
 #include <iostream>

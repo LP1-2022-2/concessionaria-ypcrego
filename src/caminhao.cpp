@@ -6,9 +6,3 @@ Caminhao::Caminhao(string marca, double preco, int anoFabricacao, string tipoCar
   this->anoFabricacao = anoFabricacao;
 	this->tipoCarga = tipoCarga;
 }
-
-string Caminhao::getAtributoRelativo() { return tipoCarga; }
-
-void Caminhao::setAtributoRelativo(string tipoCarga) { this->tipoCarga = tipoCarga; }
-
-string const Caminhao::nomeClasse() { return "Caminhão"; }

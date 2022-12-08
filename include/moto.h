@@ -10,12 +10,6 @@ class Moto : public Veiculo {
 public:
   string modelo;
   Moto(string marca, double preco, int anoFabricacao, string modelo);
-
-  string getAtributoRelativo() override;
-
-  void setAtributoRelativo(string modelo) override;
-
-  string const nomeClasse() override;
 };
 
 #endif

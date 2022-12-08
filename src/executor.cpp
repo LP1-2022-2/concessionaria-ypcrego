@@ -72,9 +72,7 @@ string Executor::processarLinha(string linha) {
     buf >> estoque;
 
     return sistema->create_concessionaria(nome, CNPJ, estoque);
-    /* TODO: Verificar se a linha comentada a seguir ainda pode ser necessária
-       em algum momento (caso de criar concessionária apenas com nome) return
-       sistema->create_concessionaria(nome); */
+
   } else if (nomeComando == "add-car" || nomeComando == "add-bike" ||
              nomeComando == "add-truck") {
     string dados = restoDe(buf);
@@ -101,9 +99,6 @@ string Executor::processarLinha(string linha) {
     int anoFabricacao;
     buf >> anoFabricacao;
 
-    // string tipoMotor;
-    // buf >> tipoMotor;
-
     string atributoRelativo;
     buf >> atributoRelativo;
 
@@ -111,36 +106,27 @@ string Executor::processarLinha(string linha) {
       Automovel aa(marca, preco, anoFabricacao, atributoRelativo);
       return sistema->create_car(nome, chassi, aa);
 
-    }
-
-    else if (nomeComando == "add-bike") {
+    } else if (nomeComando == "add-bike") {
       Moto mm(marca, preco, anoFabricacao, atributoRelativo);
       return sistema->create_bike(nome, chassi, mm);
-    }
 
-    else if (nomeComando == "add-truck") {
+    } else if (nomeComando == "add-truck") {
       Caminhao tt(marca, preco, anoFabricacao, atributoRelativo);
       return sistema->create_truck(nome, chassi, tt);
     }
 
-    //  return sistema->create_veiculo(nome, chassi, vv);
-
-    /* Concessionaria cc = sistema->getConcessionarias().at(nome);
-
-     cout << cc.veiculos.at(chassi).marca;*/
-
   } else if (nomeComando == "search-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->search_vehicle(inputChassi);
-		
+
   } else if (nomeComando == "remove-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->remove_vehicle(inputChassi);
-		
+
   } else if (nomeComando == "list-concessionaria") {
     string nome = restoDe(buf);
     return sistema->list_concessionaria(nome);
-		
+
   } else if (nomeComando == "raise-price") {
     string dados = restoDe(buf);
 
@@ -154,7 +140,7 @@ string Executor::processarLinha(string linha) {
     buf >> porcentagem;
 
     return sistema->raise_price(nome, porcentagem);
-		
+
   } else {
     return "Comando não reconhecido!";
   }

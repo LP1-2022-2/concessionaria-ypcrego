@@ -16,12 +16,3 @@ std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc) {
      << "Número de veículos: " << cc.estoque << std::endl;
   return oo;
 }*/
-
-void Concessionaria::addVeiculo(Veiculo &vv) {
-  /*
-	veiculos.push_back(vv);
-  cout << "Veiculo adicionado com sucesso !" << endl;
-  cout << "A marca dele: " << vv.marca << endl;
-  cout << "Tamanho de veiculos: " << veiculos.size() << endl;
-	*/
-}

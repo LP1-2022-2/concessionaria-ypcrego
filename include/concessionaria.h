@@ -22,7 +22,6 @@ public:
   map<string, Automovel> carros;
   map<string, Caminhao> caminhoes;
   map<string, Moto> motos;
-  void addVeiculo(Veiculo &vv);
 };
 
 #endif

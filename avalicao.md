@@ -116,10 +116,6 @@ Aumenta os preços dos veículos em uma concessionária, admitindo, como argumen
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
 Sintaxe:
 
-Busca uma concessionária no programa, admitindo o nome da concessionoária como argumento. A busca retornará uma lista de informações sobre a concessionária: nome, quantidade de veículos cadastrados para cada tipo e seus preços totais acumulados, e o valor total de veículos para a concessionária.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
-Sintaxe:
-
 ```
 raise-price <nome da concessionária> <porcentagem>
 ``` 	

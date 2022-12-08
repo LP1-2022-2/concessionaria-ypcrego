@@ -132,12 +132,15 @@ string Executor::processarLinha(string linha) {
   } else if (nomeComando == "search-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->search_vehicle(inputChassi);
+		
   } else if (nomeComando == "remove-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->remove_vehicle(inputChassi);
+		
   } else if (nomeComando == "list-concessionaria") {
     string nome = restoDe(buf);
     return sistema->list_concessionaria(nome);
+		
   } else if (nomeComando == "raise-price") {
     string dados = restoDe(buf);
 
@@ -151,6 +154,7 @@ string Executor::processarLinha(string linha) {
     buf >> porcentagem;
 
     return sistema->raise_price(nome, porcentagem);
+		
   } else {
     return "Comando não reconhecido!";
   }

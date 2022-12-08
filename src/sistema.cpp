@@ -40,7 +40,7 @@ string Sistema::veiculoCriado(string *chassi) {
 
       std::ostringstream oo;
       oo << "ERRO - Veículo " << *chassi << " já adicionado à concessionária "
-         << it->first;
+         << it->first << std::endl;
 
       return oo.str();
     }
@@ -150,7 +150,7 @@ string Sistema::search_vehicle(string inputChassi) {
   }
 
   std::ostringstream oo;
-  oo << "Veículo não encontrado!";
+  oo << "Veículo não encontrado!" << std::endl;
   return oo.str();
 }
 
@@ -172,6 +172,8 @@ string Sistema::remove_vehicle(string inputChassi) {
 
       (it->second).carros.erase(itVeiculo);
 
+      ((it->second).estoque)--;
+
       removido = true;
       break;
     }
@@ -184,6 +186,7 @@ string Sistema::remove_vehicle(string inputChassi) {
           (it->second).motos.find(inputChassi);
 
       (it->second).motos.erase(itVeiculo);
+      ((it->second).estoque)--;
 
       removido = true;
       break;
@@ -198,6 +201,7 @@ string Sistema::remove_vehicle(string inputChassi) {
           (it->second).caminhoes.find(inputChassi);
 
       (it->second).caminhoes.erase(itVeiculo);
+      ((it->second).estoque)--;
 
       removido = true;
       break;
@@ -208,11 +212,11 @@ string Sistema::remove_vehicle(string inputChassi) {
 
   if (removido) {
     oo << "Veículo " << inputChassi << " removido da concessionária "
-       << (itEncontrado->first);
+       << (itEncontrado->first) << std::endl;
     return oo.str();
   }
 
-  oo << "Veículo não encontrado!";
+  oo << "Veículo não encontrado!" << std::endl;
 
   return oo.str();
 }
@@ -254,7 +258,8 @@ string Sistema::list_concessionaria(string nome) {
   oo << "Concessionaria " << nome << std::endl;
 
   oo << "Total de Automóveis: " << concessionarias.at(nome).carros.size()
-     << "; Valor total: R$ " << std::fixed << std::setprecision(2) << somas[0] << std::endl;
+     << "; Valor total: R$ " << std::fixed << std::setprecision(2) << somas[0]
+     << std::endl;
 
   oo << "Total de Motos: " << concessionarias.at(nome).motos.size()
      << "; Valor total: R$ " << somas[1] << std::endl;
@@ -276,14 +281,14 @@ string Sistema::raise_price(string nome, double num) {
     (it->second).preco *= aumento;
   }
 
-  aumento = 2 + (num / 100.0);
+  aumento = 1 + (2 * num / 100.0);
 
   for (map<string, Moto>::iterator it = concessionarias.at(nome).motos.begin();
        it != concessionarias.at(nome).motos.end(); ++it) {
     (it->second).preco *= aumento;
   }
 
-  aumento = 3 + (num / 100.0);
+  aumento = 1 + (3 * num / 100.0);
 
   for (map<string, Caminhao>::iterator it =
            concessionarias.at(nome).caminhoes.begin();

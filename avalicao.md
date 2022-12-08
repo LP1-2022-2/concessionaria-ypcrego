@@ -4,26 +4,168 @@
 * Nome: Yves Pablo Costa Rêgo
 
 * Matrícula: 20210058235
-  
-# Compilação  
 
-* a descrição de como compilar e rodar o programa, incluindo um roteiro de entradas e comandos que destaquem as funcionalidades 
 
-# Limitações
+# 1. Compilando, executando e testando o programa Concessionária.
+
+ 
+## 1.1 Compilação e execução
+
+Os arquivos do GitHub já estão em suas devidas pastas. Para compilar o programa e executar, há duas opções: a compilação/execução normal e a compilação/execução para checar vazamentos de memória.
+
+Para a compilação e execução normal, basta usar os comandos:
+
+```
+make
+./build/programa
+```
+
+e o programa deve ser executado sem erros.
+
+Para a compilação e execução checando vazamentos de memória, é necessário alterar o arquivo Makefile. Nele, deve-se alterar a linha:
+
+```
+g++ -Wall -fsanitize=address -Iinclude $(OBJECTS) src/programa.cpp -o build/programa
+```
+
+para:
+
+```
+g++ -Wall -Iinclude $(OBJECTS) src/programa.cpp -o build/programa
+ ```
+
+e, então, executar os comandos:
+```
+make
+valgrind -v --leak-check=full --show-reachable=yes ./build/programa
+```
+
+feito isso, o programa será executado verificando possíveis vazamentos de memória e poderá receber as instruções.
+
+
+## 1.2 Instruções, entradas e comandos
+
+O programa lê uma linha de cada vez, ou seja, cada comando é processado a partir de uma nova linha. Os comandos disponíveis estão listados aqui.
+
+**create-concessionaria:**
+Cria uma concessionária, admitindo nome, CNPJ e o número de veículos no estoque como argumentos, nessa ordem. Não é feita validação ou tratamento dos argumentos; certifique-se de inserir os dados corretamente.
+Sintaxe:
+
+```
+create-concessionaria <nome da concessionária> <CNPJ> <número de veículos>
+``` 	
+
+**add-car:**
+Adiciona um carro em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de motor como argumentos, nessa ordem. O preço é um número real.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+add-car <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <tipo de motor>
+``` 	
+
+**add-bike:**
+Adiciona uma moto em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e modelo como argumentos, nessa ordem. O preço é um número real.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+add-bike <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <modelo>
+``` 	
+
+**add-truck:**
+Adiciona um caminhão em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de carga como argumentos, nessa ordem. O preço é um número real.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+add-truck <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <tipo de carga>
+``` 	
+
+**remove-vehicle:**
+Remove um veículo do programa, admitindo o chassi do veículo como argumento.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+remove-vehicle <chassi>
+``` 	
+
+
+**search-vehicle:**
+Busca um veículo no programa, admitindo o chassi do veículo como argumento. A busca retornará uma lista de informações sobre o veículo: concessionária a que pertence, marca, preço, chassi, ano de fabricação e atributo especial (ex: modelo, para uma Moto). 
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+search-vehicle <chassi>
+``` 	
+
+**list-concessionaria:**
+Busca uma concessionária no programa, admitindo o nome da concessionoária como argumento. A busca retornará uma lista de informações sobre a concessionária: nome, quantidade de veículos cadastrados para cada tipo e seus preços totais acumulados, e o valor total de veículos para a concessionária.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+list-concessionaria <nome da concessionária>
+``` 	
+
+
+**raise-price:**
+Aumenta os preços dos veículos em uma concessionária, admitindo, como argumento, o nome da concessionária e um número real representando uma porcentagem. Os preços dos carros, motos e caminhões na concessionária serão aumentados em \[X, 2X, 3X\]\% respectivamente, onde X é o número digitado.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+Busca uma concessionária no programa, admitindo o nome da concessionoária como argumento. A busca retornará uma lista de informações sobre a concessionária: nome, quantidade de veículos cadastrados para cada tipo e seus preços totais acumulados, e o valor total de veículos para a concessionária.
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
+Sintaxe:
+
+```
+raise-price <nome da concessionária> <porcentagem>
+``` 	
+
+# 1.3 Roteiro para execução
+Aqui, consta uma sugestão de roteiro para testar o programa. 
+
+```
+make
+./build/programa
+create-concessionaria IMD_SA 11.111.111/0001-11 0
+add-car IMD_SA Toyota 100000 9BRBLWHEXG0107721 2019 gasolina
+add-bike IMD_SA Yamaha 23500 3BRBLJUEXG0308234 2022 BWS50
+add-truck IMD_SA Scania 700000 7BRBLQHEXG0208811 2010 perigosa
+add-car IMD_SA Toyota 100000 9BRBLWHEXG0107721 2019 gasolina
+search-vehicle 9BRBLWHEXG0107721
+remove-vehicle 9BRBLWHEXG0107721
+search-vehicle 9BRBLWHEXG0107721
+create-concessionaria UFRN_SA 12.345.678/9101-23 0
+add-truck UFRN_SA Hyundai 80000 7BRBLQHEXG0208811 2015 comum
+add-truck IFRN_SA Hyundai 80000 7BRBLQHEXG0208811 2015 comum
+list-concessionaria IMD_SA
+list-concessionaria UFRN_SA
+raise-price IMD_SA 10
+list-concessionaria IMD_SA
+quit
+```
+
+Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-se um veículo para cada tipo. Então, tenta-se cadastrar um dos veículos novamente - o código deve impedir isso e apontar um erro. Após isso, busca-se um veículo, remove-se ele e se realiza a mesma busca, o que também deve ser impedido e indicado. Na segunda concessionária criada, tenta-se adicionar outro veículo já criado; espera-se uma mensagem de erro. Ainda, tenta-se adicionar o veículo em uma concessionária não existente. Depois, as concessionárias são listadas e a primeira tem seus preços aumentados, o que deve ser refletido quando ela é listada novamente.
+
+
+# 2. Limitações
 
 * a descrição das limitações (caso existam) do programa e quaisquer dificuldades encontradas
   
-	* Limitação/Dificuldade 1: A manutenção do código não é fluida. Para adicionar um novo tipo de veículo, devem ser feitas mudanças em muitos trechos do código.
+	* Limitação/Dificuldade 1: **a manutenção do código não é fluida. Para adicionar um novo tipo de veículo, devem ser feitas mudanças em muitos trechos do código.**
 	  * Detalhes: no momento de cadastrar veículos em uma concessionária, surgiu a necessidade de criar um container para armazená-los. Entretanto, caso o container tivesse como tipo a classe base Veículo, os objetos de classes derivadas inseridos nele perderiam seus atributos especiais (ex: o modelo de uma Moto), a não ser que fossem utilizados smart pointers ou downcasting. No entanto, além disso, pede-se para listar a quantidade de carros/motos/caminhões no container; não foi encontrado um método eficiente de fazer isso, mesmo pensando nas soluções anteriores. Com isso, a solução utilizada foi a de criar múltiplos containers, um para cada tipo de veículo, e armazenar os objetos de acordo com o tipo de cada um. Não parece ser uma resolução adequada, uma vez que, caso se deseje adicionar um novo tipo de veículo, muito código precisa ser repetido: criar um novo container para aquele tipo, criar os métodos relativos à sua inserção na concessionária, e atualizar os métodos relacionados à busca/remoção/listagem (que, por sua vez, já têm repetições).
-	* Limitação/Dificuldade 2: partes significativas do código são repetidas.
+	* Limitação/Dificuldade 2: **partes significativas do código são repetidas.**
 	  * Detalhes: como complemento à limitação/dificuldade 1, muitos trechos do código são repetidos. Isso significa que, caso algo precise ser modificado em determinadas funcionalidades, a mudança deve ser feita várias vezes, uma para cada tipo de veículo.
-	* Limitação/Dificuldade 3: o conceito de herança poderia ter sido melhor explorado.
-		* Detalhes: como reflexo da limitação/dificuldade 1, foi excluída a possibilidade da criação de um vetor de Veículos. Assim, os objetos herdados de veículos obtiveram maior autonomia e menos código pôde ser reutilizado, tornando a existência da classe base menos útil do que poderia ter sido.
-	* Limitação/Dificuldade 4: foi difícil visualizar a implementação de certas partes do exercício.
-  * Detalhes: um exemplo de dificuldade nesse quesito foi na busca de veículos. A busca é realizada por um chassi, que, inicialmente, seria um atributo de um veículo; no entanto, houve complicações.
+	* Limitação/Dificuldade 3: **o conceito de herança poderia ter sido melhor explorado.**
+		* Detalhes: como reflexo da limitação/dificuldade 1, foi excluída a possibilidade da criação de um vetor de Veículos. Assim, os objetos herdados de veículos obtiveram maior autonomia e menos código se conseguiu ser reutilizado, tornando a existência da classe base menos útil do que poderia ter sido.
+	* Limitação/Dificuldade 4: **foi difícil visualizar a implementação de certas partes do exercício.**
+	  * Detalhes: um exemplo de dificuldade nesse quesito foi na busca de veículos. A busca é realizada por um chassi, que, inicialmente, seria um atributo de um veículo; no entanto, houve complicações.
     A principal delas é que não foi fácil visualizar como obter um chassi a partir das múltiplas camadas em que ele estaria inserido - chassi seria um atributo (ou um método, considerando gets) pertencente a um objeto Veículo, que estaria em um vetor de Veículos; por sua vez, o vetor de Veículos estaria dentro de uma Concessionária, inserida em um vetor de Concessionárias.
     O acesso a um chassi através de tantas "subdivisões" se mostrou confuso, e o mesmo se aplicaria à outras funções. Uma solução parcial para tal foi utilizar mapas no lugar de vetores; desse modo, chassis virariam chaves, que facilitariam encontrar veículos.
-    Embora essa alternativa tenha se mostrado eficaz, algumas questões ainda ficaram abertas: chassi ainda deveria ser um atributo de Veículo, mesmo que um determinado chassi já funcionasse como chave para um Veículo? No fim, para o código, essa necessidade foi suplantada, mas restaram dúvidas sobre qual seria a implementação fidedigna ao problema. 
+    Embora essa alternativa tenha se mostrado eficaz, algumas questões ainda ficaram abertas: chassi ainda deveria ser um atributo de Veículo, mesmo que um determinado chassi já funcionasse como chave para um Veículo? No fim, para o código, essa necessidade não foi observada, mas restaram dúvidas sobre qual seria a implementação fidedigna ao problema. 
    
 # Autoavaliação
 
@@ -84,13 +226,13 @@
   - 0: não documentou o código
   - 5: documentou o código 
   
-- Implementação e documentação de arquivos e procedimentos de compilação e teste | **0 / 15**
+- Implementação e documentação de arquivos e procedimentos de compilação e teste | **15 / 15**
   - 0: não implementou arquivos e procedimentos de compilação e teste
   - 5: implementou alguns arquivos e procedimentos de compilação e teste (com alguma documentação) 
   - 15: Ampla implementação e documentação de arquivos e procedimentos de compilação e teste (com exemplos)
  
  # Total
  
- **125 / 150 ** pontos (sem bônus)
+ **140 / 150 ** pontos (sem bônus)
  
- **125 / 200 ** pontos (com bônus)
+ **140 / 200 ** pontos (com bônus)

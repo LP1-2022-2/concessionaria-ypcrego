@@ -151,7 +151,7 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
 
 * a descrição das limitações (caso existam) do programa e quaisquer dificuldades encontradas
   * Limitação/Dificudlade 1: **a utilização de recursos novos foi árdua.**
-	  * Detalhes: criou-se um único container para armazenar todos os veículos de uma concessionária. Para conseguir utilizar polimorfismo e evitar vazamentos de memória, utilizou-se o ponteiro inteligente shared_ptr. Devido a isso, por se estar lidando com um conceito relativamente novo, algumas implementações ou sintaxes se mostraram confusas.
+	  * Detalhes: criou-se um único container para armazenar todos os veículos de uma concessionária. Para conseguir utilizar polimorfismo e evitar vazamentos de memória, utilizou-se o ponteiro inteligente shared_ptr. Assim, por se estar lidando com um conceito relativamente novo, algumas implementações ou sintaxes se mostraram confusas. Além disso, o algoritmo de accumulate se provou mais complicado do que o esperado, uma vez que se estava trabalhando com mapas.
 	* Limitação/Dificuldade 2: **foi difícil visualizar a implementação de certas partes do exercício.**
 	  * Detalhes: um exemplo de dificuldade nesse quesito foi na busca de veículos. A busca é realizada por um chassi, que, inicialmente, seria um atributo de um veículo; no entanto, houve complicações.
     A principal delas é que não foi fácil visualizar como obter um chassi a partir das múltiplas camadas em que ele estaria inserido - chassi seria um atributo (ou um método, considerando gets) pertencente a um objeto Veículo, que estaria em um vetor de Veículos; por sua vez, o vetor de Veículos estaria dentro de uma Concessionária, inserida em um vetor de Concessionárias.

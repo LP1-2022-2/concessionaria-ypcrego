@@ -10,7 +10,7 @@ string Caminhao::getTipo() { return "Caminhao"; }
 // Imprime os atributos herdados de Veículo e o atributo especial da classe.
 // print() é chamado através do operador "<<", sobrecarregado em Veículo.
 void Caminhao::print(std::ostream &oo) const {
-	Veiculo::print(oo);
+  Veiculo::print(oo);
   oo << "Tipo de carga: " << tipoCarga << std::endl;
 }
 
@@ -20,4 +20,4 @@ double Caminhao::raisePrice(double num) {
   return preco;
 }
 
-Caminhao::~Caminhao(){}
+Caminhao::~Caminhao() {}

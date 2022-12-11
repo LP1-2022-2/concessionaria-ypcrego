@@ -1,5 +1,7 @@
-// TODO Verificar possível substituição de atributos públicos por getters e setters
-// Todo terminar os outros comandos; usar static e virtual pra contar
+// TODO Verificar possível substituição de atributos públicos por getters e
+// setters
+// TODO comandos load_concessionaria e save_concessionaria
+// TODO atualizar mensagens de retorno
 #include "executor.h"
 #include "sistema.h"
 #include <iostream>

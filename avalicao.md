@@ -150,18 +150,13 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
 # 2. Limitações
 
 * a descrição das limitações (caso existam) do programa e quaisquer dificuldades encontradas
-  
-	* Limitação/Dificuldade 1: **a manutenção do código não é fluida. Para adicionar um novo tipo de veículo, devem ser feitas mudanças em muitos trechos do código.**
-	  * Detalhes: no momento de cadastrar veículos em uma concessionária, surgiu a necessidade de criar um container para armazená-los. Entretanto, caso o container tivesse como tipo a classe base Veículo, os objetos de classes derivadas inseridos nele perderiam seus atributos especiais (ex: o modelo de uma Moto), a não ser que fossem utilizados smart pointers ou downcasting. No entanto, além disso, pede-se para listar a quantidade de carros/motos/caminhões no container; não foi encontrado um método eficiente de fazer isso, mesmo pensando nas soluções anteriores. Com isso, a solução utilizada foi a de criar múltiplos containers, um para cada tipo de veículo, e armazenar os objetos de acordo com o tipo de cada um. Não parece ser uma resolução adequada, uma vez que, caso se deseje adicionar um novo tipo de veículo, muito código precisa ser repetido: criar um novo container para aquele tipo, criar os métodos relativos à sua inserção na concessionária, e atualizar os métodos relacionados à busca/remoção/listagem (que, por sua vez, já têm repetições).
-	* Limitação/Dificuldade 2: **partes significativas do código são repetidas.**
-	  * Detalhes: como complemento à limitação/dificuldade 1, muitos trechos do código são repetidos. Isso significa que, caso algo precise ser modificado em determinadas funcionalidades, a mudança deve ser feita várias vezes, uma para cada tipo de veículo.
-	* Limitação/Dificuldade 3: **o conceito de herança poderia ter sido melhor explorado.**
-		* Detalhes: como reflexo da limitação/dificuldade 1, foi excluída a possibilidade da criação de um vetor de Veículos. Assim, os objetos herdados de veículos obtiveram maior autonomia e menos código se conseguiu ser reutilizado, tornando a existência da classe base menos útil do que poderia ter sido.
-	* Limitação/Dificuldade 4: **foi difícil visualizar a implementação de certas partes do exercício.**
+  * Limitação/Dificudlade 1: **a utilização de recursos novos foi árdua.**
+	  * Detalhes: criou-se um único container para armazenar todos os veículos de uma concessionária. Para conseguir utilizar polimorfismo e evitar vazamentos de memória, utilizou-se o ponteiro inteligente shared_ptr. Devido a isso, por se estar lidando com um conceito relativamente novo, algumas implementações ou sintaxes se mostraram confusas.
+	* Limitação/Dificuldade 2: **foi difícil visualizar a implementação de certas partes do exercício.**
 	  * Detalhes: um exemplo de dificuldade nesse quesito foi na busca de veículos. A busca é realizada por um chassi, que, inicialmente, seria um atributo de um veículo; no entanto, houve complicações.
     A principal delas é que não foi fácil visualizar como obter um chassi a partir das múltiplas camadas em que ele estaria inserido - chassi seria um atributo (ou um método, considerando gets) pertencente a um objeto Veículo, que estaria em um vetor de Veículos; por sua vez, o vetor de Veículos estaria dentro de uma Concessionária, inserida em um vetor de Concessionárias.
     O acesso a um chassi através de tantas "subdivisões" se mostrou confuso, e o mesmo se aplicaria à outras funções. Uma solução parcial para tal foi utilizar mapas no lugar de vetores; desse modo, chassis virariam chaves, que facilitariam encontrar veículos.
-    Embora essa alternativa tenha se mostrado eficaz, algumas questões ainda ficaram abertas: chassi ainda deveria ser um atributo de Veículo, mesmo que um determinado chassi já funcionasse como chave para um Veículo? No fim, para o código, essa necessidade não foi observada, mas restaram dúvidas sobre qual seria a implementação fidedigna ao problema. 
+    Embora essa alternativa tenha se mostrado eficaz, algumas questões ainda ficaram abertas: chassi ainda deveria ser um atributo de Veículo, mesmo que um determinado chassi já funcionasse como chave para um Veículo? No fim, para o código, isso foi necessário, mas restaram dúvidas sobre qual seria a implementação eficiente para o problema. 
    
 # Autoavaliação
 
@@ -188,19 +183,19 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
   - 0: comando não implementado
   - 10: comando implementado e funcional
 
-- Implementação e uso do comando para busca de veículos `search-vehicle` | **15 / 15 - Bônus: ...**
+- Implementação e uso do comando para busca de veículos `search-vehicle` | **15 / 15 - Bônus: 20**
   - 0: não implementado
   - 15: implementado e funcional
   - bonus +10: implementado com estratégia de busca diferente da busca exaustiva
   - bonus +10: uso de métodos virtuais para impressão na tela
   - bonus +10: uso de sobrecarga de operadores para impressão na tela
 
-- Implementação e uso do comando `list-concessionaria` | **10 / 10 - Bônus: ...**
+- Implementação e uso do comando `list-concessionaria` | **10 / 10 - Bônus: 10**
   - 0: não implementado
   - 10: implementado e funcional   
   - bonus +10: uso de sobrecarga de operadores para impressão na tela
 
-- Implementação e uso do comando `raise-price` | **10 / 10 - Bônus: ...**
+- Implementação e uso do comando `raise-price` | **10 / 10 - Bônus: 10**
   - 0: não implementado
   - 10: implementado e funcional 
   - bonus +10: implementado com uso de método virtual
@@ -209,7 +204,7 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
   - 0: não implementado
   - 15: ambos os comandos implementados e funcionais
   
-- Implementação eficiente através do uso de referencias e contêineres da STL | **5 / 10**
+- Implementação eficiente através do uso de referencias e contêineres da STL | **10 / 10**
   - 0: não usou contêiner da STL nem fez uso eficiente dos recursos computacionais
   - 5: usou contêiner da STL mas não otimizou uso dos recursos computacionais
   - 10: usou contêiner da STL junto a algoritmos e práticas de bom uso de recursos computacionais
@@ -229,6 +224,6 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
  
  # Total
  
- **115 / 150 ** pontos (sem bônus)
+ **120 / 150 ** pontos (sem bônus)
  
- **115 / 200 ** pontos (com bônus)
+ **160 / 200 ** pontos (com bônus)

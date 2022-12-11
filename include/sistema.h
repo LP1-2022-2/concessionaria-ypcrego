@@ -20,11 +20,7 @@ public:
   /* Cria uma concessionaria e retorna uma string de erro/sucesso
            @param nome o nome da concessionaria
            @return uma string contendo uma mensagem de erro ou "Concessionaria
-      Criada"
-
-        TODO: Verificar se a linha comentada a seguir ainda é necessária (criar
-     concessionária apenas pelo nome).
-         string create_concessionaria(const string nome); */
+      Criada" */
 
   string create_concessionaria(const string nome, const string CNPJ,
                                const int estoque);
@@ -38,19 +34,13 @@ public:
 
   string veiculoCriado(string *chassi);
 
-  // string create_veiculo(string nome, string chassi, Veiculo *vv);
-
-  string create_car(string nome, string chassi, Automovel aa);
-
-  string create_bike(string nome, string chassi, Moto mm);
-
-  string create_truck(string nome, string chassi, Caminhao tt);
+  string create_vehicle(string nome, string chassi, VeiculoPtr vv);
 
   string search_vehicle(string inputChassi);
 
   friend std::ostream &operator<<(std::ostream &oo, Veiculo const &vv);
 
-  string remove_vehicle(string inputChassi);
+  string remove_vehicle(string chassi);
 
   string list_concessionaria(string nome);
 

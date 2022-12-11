@@ -86,11 +86,11 @@ string Executor::processarLinha(string linha) {
     buf.clear();
     buf.str(dados);
 
-    string nome;
-    buf >> nome;
+    string concessionaria;
+    buf >> concessionaria;
 
     // Busca uma concessionária por nome no sistema.
-    if (!sistema->busca_concessionaria(nome)) {
+    if (!sistema->busca_concessionaria(concessionaria)) {
       return "Concessionaria nao criada!";
     }
 
@@ -109,20 +109,25 @@ string Executor::processarLinha(string linha) {
     string atributoRelativo;
     buf >> atributoRelativo;
 
-    // Cria um objeto relativo ao tipo desejado e o adiciona no sistema.
-    // NOVO-TIPO-VEICULO: quando adicionar um novo tipo de veículo, adicionar
-    // mais um if.
+    // Cria um shared_ptr relativo ao tipo desejado e o adiciona no sistema.
     if (nomeComando == "add-car") {
-      Automovel aa(marca, preco, anoFabricacao, atributoRelativo);
-      return sistema->create_car(nome, chassi, aa);
+      VeiculoPtr aa =
+          std::make_shared<Automovel>(concessionaria, marca, preco, chassi,
+                                      anoFabricacao, atributoRelativo);
+
+      return sistema->create_vehicle(concessionaria, chassi, aa);
 
     } else if (nomeComando == "add-bike") {
-      Moto mm(marca, preco, anoFabricacao, atributoRelativo);
-      return sistema->create_bike(nome, chassi, mm);
+      VeiculoPtr mm =
+          std::make_shared<Moto>(concessionaria, marca, preco, chassi,
+                                 anoFabricacao, atributoRelativo);
+      return sistema->create_vehicle(concessionaria, chassi, mm);
 
     } else if (nomeComando == "add-truck") {
-      Caminhao tt(marca, preco, anoFabricacao, atributoRelativo);
-      return sistema->create_truck(nome, chassi, tt);
+      VeiculoPtr tt =
+          std::make_shared<Caminhao>(concessionaria, marca, preco, chassi,
+                                     anoFabricacao, atributoRelativo);
+      return sistema->create_vehicle(concessionaria, chassi, tt);
     }
 
   }
@@ -143,8 +148,13 @@ string Executor::processarLinha(string linha) {
 
   // Comando que lista informações de uma concessionária.
   else if (nomeComando == "list-concessionaria") {
-    string nome = restoDe(buf);
-    return sistema->list_concessionaria(nome);
+    string concessionaria = restoDe(buf);
+
+    if (!sistema->busca_concessionaria(concessionaria)) {
+      return "Concessionaria nao criada!";
+    }
+
+    return sistema->list_concessionaria(concessionaria);
 
   }
 
@@ -158,6 +168,10 @@ string Executor::processarLinha(string linha) {
 
     string nome;
     buf >> nome;
+
+    if (!sistema->busca_concessionaria(nome)) {
+      return "Concessionaria nao criada!";
+    }
 
     double porcentagem;
     buf >> porcentagem;

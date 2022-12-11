@@ -1,5 +1,5 @@
 // TODO Verificar possível substituição de atributos públicos por getters e setters
-
+// Todo terminar os outros comandos; usar static e virtual pra contar
 #include "executor.h"
 #include "sistema.h"
 #include <iostream>

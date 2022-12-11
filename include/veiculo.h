@@ -1,6 +1,5 @@
 #ifndef VEICULO_H
 #define VEICULO_H
-
 #include <string>
 
 using std::string;

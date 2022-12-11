@@ -1,7 +1,5 @@
 #include "automovel.h"
 
-// Automovel Automovel{ { marca, double preco, string chassi, int anoFabricacao,
-// string modelo)}
 Automovel::Automovel(string marca, double preco, int anoFabricacao,
                      string tipoMotor)
     : Veiculo() {

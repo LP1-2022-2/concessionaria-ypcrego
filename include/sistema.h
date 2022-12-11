@@ -1,14 +1,10 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 #include "concessionaria.h"
-#include <algorithm>
-#include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <numeric>
-#include <iomanip>
 
 using std::map;
 using std::string;
@@ -40,9 +36,7 @@ public:
 
   bool busca_concessionaria(string nome);
 
-
-string veiculoCriado(string *chassi);
-
+  string veiculoCriado(string *chassi);
 
   // string create_veiculo(string nome, string chassi, Veiculo *vv);
 
@@ -58,9 +52,9 @@ string veiculoCriado(string *chassi);
 
   string remove_vehicle(string inputChassi);
 
-string list_concessionaria(string nome);
+  string list_concessionaria(string nome);
 
-string raise_price(string nome, double num);
+  string raise_price(string nome, double num);
 };
 
 #endif

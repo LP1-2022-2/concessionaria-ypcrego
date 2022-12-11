@@ -56,7 +56,10 @@ string Executor::processarLinha(string linha) {
   if (nomeComando == "quit") {
     this->sair = true;
     return sistema->quit();
-  } else if (nomeComando == "create-concessionaria") {
+  }
+
+  // Comando relativo à criação de uma concessionária.
+  else if (nomeComando == "create-concessionaria") {
     string dados = restoDe(buf);
 
     buf.clear();
@@ -73,8 +76,11 @@ string Executor::processarLinha(string linha) {
 
     return sistema->create_concessionaria(nome, CNPJ, estoque);
 
-  } else if (nomeComando == "add-car" || nomeComando == "add-bike" ||
-             nomeComando == "add-truck") {
+  }
+
+  // Comandos relativos à adição de um veículo na concessionária.
+  else if (nomeComando == "add-car" || nomeComando == "add-bike" ||
+           nomeComando == "add-truck") {
     string dados = restoDe(buf);
 
     buf.clear();
@@ -83,6 +89,7 @@ string Executor::processarLinha(string linha) {
     string nome;
     buf >> nome;
 
+    // Busca uma concessionária por nome no sistema.
     if (!sistema->busca_concessionaria(nome)) {
       return "Concessionaria nao criada!";
     }
@@ -102,6 +109,9 @@ string Executor::processarLinha(string linha) {
     string atributoRelativo;
     buf >> atributoRelativo;
 
+    // Cria um objeto relativo ao tipo desejado e o adiciona no sistema.
+    // NOVO-TIPO-VEICULO: quando adicionar um novo tipo de veículo, adicionar
+    // mais um if.
     if (nomeComando == "add-car") {
       Automovel aa(marca, preco, anoFabricacao, atributoRelativo);
       return sistema->create_car(nome, chassi, aa);
@@ -115,19 +125,32 @@ string Executor::processarLinha(string linha) {
       return sistema->create_truck(nome, chassi, tt);
     }
 
-  } else if (nomeComando == "search-vehicle") {
+  }
+
+  // Comando relativo à busca de um veículo no sistema.
+  else if (nomeComando == "search-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->search_vehicle(inputChassi);
 
-  } else if (nomeComando == "remove-vehicle") {
+  }
+
+  // Comando relativo à remoção de um veículo do sistema.
+  else if (nomeComando == "remove-vehicle") {
     string inputChassi = restoDe(buf);
     return sistema->remove_vehicle(inputChassi);
 
-  } else if (nomeComando == "list-concessionaria") {
+  }
+
+  // Comando que lista informações de uma concessionária.
+  else if (nomeComando == "list-concessionaria") {
     string nome = restoDe(buf);
     return sistema->list_concessionaria(nome);
 
-  } else if (nomeComando == "raise-price") {
+  }
+
+  // Comando que aumenta todos os preços dos veículos em uma concessionária por
+  // determinada % (porcentagem).
+  else if (nomeComando == "raise-price") {
     string dados = restoDe(buf);
 
     buf.clear();
@@ -141,7 +164,10 @@ string Executor::processarLinha(string linha) {
 
     return sistema->raise_price(nome, porcentagem);
 
-  } else {
+  }
+
+  // Relativo a comandos incorretos ou não adicionados.
+  else {
     return "Comando não reconhecido!";
   }
 

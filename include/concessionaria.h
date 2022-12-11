@@ -14,11 +14,11 @@ using std::string;
 
 class Concessionaria {
 public:
+  // NOVO-TIPO-VEICULO: adicionar novo mapa.
   string CNPJ;
   int estoque;
   Concessionaria(string CNPJ, int estoque);
   friend std::ostream &operator<<(std::ostream &oo, Concessionaria const &cc);
-  map<string, Veiculo> veiculos;
   map<string, Automovel> carros;
   map<string, Caminhao> caminhoes;
   map<string, Moto> motos;

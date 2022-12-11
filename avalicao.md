@@ -205,7 +205,7 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
   - 10: implementado e funcional 
   - bonus +10: implementado com uso de método virtual
 
-- Implementação e uso do comando `save-concessionaria` e `load-concessionaria` | **30 / 30**
+- Implementação e uso do comando `save-concessionaria` e `load-concessionaria` | **0 / 30**
   - 0: não implementado
   - 15: ambos os comandos implementados e funcionais
   
@@ -218,7 +218,7 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
   - 0: não organizou o código
   - 5: organizou o código 
   
-- Documentação do código | **0 / 5**
+- Documentação do código | **5 / 5**
   - 0: não documentou o código
   - 5: documentou o código 
   
@@ -229,6 +229,6 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
  
  # Total
  
- **140 / 150 ** pontos (sem bônus)
+ **115 / 150 ** pontos (sem bônus)
  
- **140 / 200 ** pontos (com bônus)
+ **115 / 200 ** pontos (com bônus)

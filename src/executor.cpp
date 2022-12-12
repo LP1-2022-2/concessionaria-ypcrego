@@ -91,7 +91,7 @@ string Executor::processarLinha(string linha) {
 
     // Busca uma concessionária por nome no sistema.
     if (!sistema->busca_concessionaria(concessionaria)) {
-      return "Concessionaria nao criada!";
+      return "Concessionária não criada!";
     }
 
     string marca;
@@ -170,7 +170,7 @@ string Executor::processarLinha(string linha) {
     buf >> nome;
 
     if (!sistema->busca_concessionaria(nome)) {
-      return "Concessionaria nao criada!";
+      return "Concessionária não criada!";
     }
 
     double porcentagem;

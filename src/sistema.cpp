@@ -29,11 +29,30 @@ bool Sistema::busca_concessionaria(string nome) {
   return (concessionarias.count(nome) == 1);
 }
 
+string Sistema::veiculoCriado(string *chassi) {
+
+  for (map<string, Concessionaria>::iterator it = concessionarias.begin();
+       it != concessionarias.end(); ++it) {
+
+    // Verifica se o chassi está presente no container de veículos.
+    if ((it->second).veiculos.count(*chassi) > 0) {
+      std::ostringstream oo;
+      oo << "ERRO - Veículo " << *chassi << " já adicionado à concessionária "
+         << it->first << std::endl;
+      return oo.str();
+    }
+  }
+
+  return "OK";
+}
+
 // Recebe um shared_ptr de Veículo e o cadastra no sistema.
 string Sistema::create_vehicle(string nome, string chassi, VeiculoPtr vv) {
 
-  if (concessionarias.at(nome).veiculos.count(chassi) > 0) {
-    return "Veiculo ja existente!\n";
+  // Verifica se o veículo já foi criado.
+  string returnVeiculoCriado = veiculoCriado(&chassi);
+  if (returnVeiculoCriado != "OK") {
+    return returnVeiculoCriado;
   }
 
   // Insere o shared_ptr no mapa de shared_ptr<Veiculo>. Sua key é o chassi do
@@ -53,7 +72,7 @@ string Sistema::create_vehicle(string nome, string chassi, VeiculoPtr vv) {
   // Aumenta o estoque de veículos.
   concessionarias.at(nome).estoque++;
 
-  return "Veiculo criado!\n";
+  return "Veículo criado!\n";
 }
 
 // Verifica se um veículo já foi cadastro no sistema pelo chassi.
@@ -73,7 +92,7 @@ string Sistema::search_vehicle(string chassi) {
     }
   }
 
-  return "Veiculo nao encontrado!\n";
+  return "Veículo nao encontrado!\n";
 }
 
 // Recebe um chassi e o pesquisa nas concessionárias do sistema, removendo o
@@ -85,10 +104,10 @@ string Sistema::remove_vehicle(string chassi) {
 
     if ((it->second).veiculos.erase(chassi) > 0) {
       (it->second).estoque--;
-      return "Veiculo removido com sucesso!\n";
+      return "Veículo removido com sucesso!\n";
     }
   }
-  return "Veiculo nao encontrado.\n";
+  return "Veículo não encontrado.\n";
 }
 
 // Recebe o nome de uma concessionária e lista seus dados, caso ela seja

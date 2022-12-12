@@ -135,6 +135,7 @@ search-vehicle 9BRBLWHEXG0107721
 remove-vehicle 9BRBLWHEXG0107721
 search-vehicle 9BRBLWHEXG0107721
 create-concessionaria UFRN_SA 12.345.678/9101-23 0
+add-car UFRN_SA Toyota 100000 9BRBLWHEXG0107721 2019 gasolina
 add-truck UFRN_SA Hyundai 80000 7BRBLQHEXG0208811 2015 comum
 add-truck IFRN_SA Hyundai 80000 7BRBLQHEXG0208811 2015 comum
 list-concessionaria IMD_SA
@@ -144,7 +145,7 @@ list-concessionaria IMD_SA
 quit
 ```
 
-Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-se um veículo para cada tipo. Então, tenta-se cadastrar um dos veículos novamente - o código deve impedir isso e apontar um erro. Após isso, busca-se um veículo, remove-se ele e se realiza a mesma busca, o que também deve ser impedido e indicado. Na segunda concessionária criada, tenta-se adicionar outro veículo já criado; espera-se uma mensagem de erro. Ainda, tenta-se adicionar o veículo em uma concessionária não existente. Depois, as concessionárias são listadas e a primeira tem seus preços aumentados, o que deve ser refletido quando ela é listada novamente.
+Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-se um veículo para cada tipo. Então, tenta-se cadastrar um dos veículos novamente - o código deve impedir isso e apontar um erro. Após isso, busca-se um veículo, remove-se ele e se realiza a mesma busca, o que também deve ser impedido e indicado. Na segunda concessionária criada, tenta-se adicionar, mais uma vez, um veículo já criado, mas de outra concessionária; espera-se uma mensagem de erro. Ainda, tenta-se adicionar o veículo em uma concessionária não existente. Depois, as concessionárias são listadas e a primeira tem seus preços aumentados, o que deve ser refletido quando ela é listada novamente.
 
 
 # 2. Limitações

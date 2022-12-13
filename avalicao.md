@@ -48,9 +48,8 @@ feito isso, o programa será executado verificando possíveis vazamentos de mem�
 O programa lê uma linha de cada vez, ou seja, cada comando é processado a partir de uma nova linha. Os comandos disponíveis estão listados aqui.
 
 **create-concessionaria:**
-Cria uma concessionária, admitindo nome, CNPJ e o número de veículos no estoque como argumentos, nessa ordem. Não é feita validação ou tratamento dos argumentos; certifique-se de inserir os dados corretamente.
-
-Sintaxe:
+Cria uma concessionária, admitindo nome, CNPJ e o número de veículos no estoque como argumentos, nessa ordem. Não é feita validação ou tratamento dos argumentos; certifique-se de inserir os dados corretamente.  
+*Sintaxe*:
 
 ```
 create-concessionaria <nome da concessionária> <CNPJ> <número de veículos>
@@ -58,9 +57,8 @@ create-concessionaria <nome da concessionária> <CNPJ> <número de veículos>
 
 **add-car:**
 Adiciona um carro em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de motor como argumentos, nessa ordem. O preço é um número real.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 add-car <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <tipo de motor>
@@ -68,9 +66,8 @@ add-car <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação
 
 **add-bike:**
 Adiciona uma moto em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e modelo como argumentos, nessa ordem. O preço é um número real.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 add-bike <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <modelo>
@@ -78,9 +75,8 @@ add-bike <nome da concessionária> <marca> <preço> <chassi> <ano de fabricaçã
 
 **add-truck:**
 Adiciona um caminhão em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de carga como argumentos, nessa ordem. O preço é um número real.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 add-truck <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação> <tipo de carga>
@@ -88,9 +84,8 @@ add-truck <nome da concessionária> <marca> <preço> <chassi> <ano de fabricaç�
 
 **remove-vehicle:**
 Remove um veículo do programa, admitindo o chassi do veículo como argumento.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 remove-vehicle <chassi>
@@ -99,9 +94,8 @@ remove-vehicle <chassi>
 
 **search-vehicle:**
 Busca um veículo no programa, admitindo o chassi do veículo como argumento. A busca retornará uma lista de informações sobre o veículo: concessionária a que pertence, marca, preço, chassi, ano de fabricação e atributo especial (ex: modelo, para uma Moto). 
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 search-vehicle <chassi>
@@ -109,9 +103,8 @@ search-vehicle <chassi>
 
 **list-concessionaria:**
 Busca uma concessionária no programa, admitindo o nome da concessionoária como argumento. A busca retornará uma lista de informações sobre a concessionária: nome, quantidade de veículos cadastrados para cada tipo e seus preços totais acumulados, e o valor total de veículos para a concessionária.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 list-concessionaria <nome da concessionária>
@@ -120,9 +113,8 @@ list-concessionaria <nome da concessionária>
 
 **raise-price:**
 Aumenta os preços dos veículos em uma concessionária, admitindo, como argumento, o nome da concessionária e um número real representando uma porcentagem. Os preços dos carros, motos e caminhões na concessionária serão aumentados em \[X, 2X, 3X\]\% respectivamente, onde X é o número digitado.
-O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
-
-Sintaxe:
+O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.  
+*Sintaxe*:
 
 ```
 raise-price <nome da concessionária> <porcentagem>
@@ -160,7 +152,7 @@ Nesse roteiro, são criadas duas concessionárias. Na primeira delas, cadastra-s
 
 * a descrição das limitações (caso existam) do programa e quaisquer dificuldades encontradas
   * Limitação/Dificudlade 1: **a utilização de recursos novos foi árdua.**
-	  * Detalhes: criou-se um único container para armazenar todos os veículos de uma concessionária. Para conseguir utilizar polimorfismo e evitar vazamentos de memória, utilizou-se o ponteiro inteligente shared_ptr. Assim, por se estar lidando com um conceito relativamente novo, algumas implementações ou sintaxes se mostraram confusas. Além disso, o algoritmo de accumulate se provou mais complicado do que o esperado, uma vez que se estava trabalhando com mapas.
+	  * Detalhes: criou-se um único container para armazenar todos os veículos de uma concessionária. Para conseguir utilizar polimorfismo e evitar vazamentos de memória, utilizou-se o ponteiro inteligente shared_ptr. Assim, por se estar lidando com um conceito relativamente novo, algumas implementações ou *Sintaxe*s se mostraram confusas. Além disso, o algoritmo de accumulate se provou mais complicado do que o esperado, uma vez que se estava trabalhando com mapas.
 	* Limitação/Dificuldade 2: **foi difícil visualizar a implementação de certas partes do exercício.**
 	  * Detalhes: um exemplo de dificuldade nesse quesito foi na busca de veículos. A busca é realizada por um chassi, que, inicialmente, seria um atributo de um veículo; no entanto, houve complicações.
     A principal delas é que não foi fácil visualizar como obter um chassi a partir das múltiplas camadas em que ele estaria inserido - chassi seria um atributo (ou um método, considerando gets) pertencente a um objeto Veículo, que estaria em um vetor de Veículos; por sua vez, o vetor de Veículos estaria dentro de uma Concessionária, inserida em um vetor de Concessionárias.

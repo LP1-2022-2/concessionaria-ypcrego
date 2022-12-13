@@ -8,12 +8,12 @@
 using namespace std;
 
 class Executor {
-  private:
-  Sistema * sistema;
+private:
+  Sistema *sistema;
   stringstream ss;
   bool sair = false;
 
-  public:
+public:
   Executor(Sistema &sistema);
 
   void iniciar(istream &in, ostream &out);

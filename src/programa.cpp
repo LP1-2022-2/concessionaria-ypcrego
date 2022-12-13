@@ -1,9 +1,13 @@
+// TODO Verificar possível substituição de atributos públicos por getters e
+// setters
+// TODO comandos load_concessionaria e save_concessionaria
+
+#include "executor.h"
+#include "sistema.h"
 #include <iostream>
 #include <list>
-#include <vector>
 #include <string>
-#include "sistema.h"
-#include "executor.h"
+#include <vector>
 
 using namespace std;
 

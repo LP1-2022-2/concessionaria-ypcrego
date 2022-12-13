@@ -49,6 +49,7 @@ O programa lê uma linha de cada vez, ou seja, cada comando é processado a part
 
 **create-concessionaria:**
 Cria uma concessionária, admitindo nome, CNPJ e o número de veículos no estoque como argumentos, nessa ordem. Não é feita validação ou tratamento dos argumentos; certifique-se de inserir os dados corretamente.
+
 Sintaxe:
 
 ```
@@ -58,6 +59,7 @@ create-concessionaria <nome da concessionária> <CNPJ> <número de veículos>
 **add-car:**
 Adiciona um carro em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de motor como argumentos, nessa ordem. O preço é um número real.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -67,6 +69,7 @@ add-car <nome da concessionária> <marca> <preço> <chassi> <ano de fabricação
 **add-bike:**
 Adiciona uma moto em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e modelo como argumentos, nessa ordem. O preço é um número real.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -76,6 +79,7 @@ add-bike <nome da concessionária> <marca> <preço> <chassi> <ano de fabricaçã
 **add-truck:**
 Adiciona um caminhão em uma concessionária, admitindo nome da concessionária, preço do veículo, chassi do veículo, ano de fabricação e tipo de carga como argumentos, nessa ordem. O preço é um número real.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): concessionária não encontrada; número de chassi do veículo já cadastrado no programa. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -85,6 +89,7 @@ add-truck <nome da concessionária> <marca> <preço> <chassi> <ano de fabricaç�
 **remove-vehicle:**
 Remove um veículo do programa, admitindo o chassi do veículo como argumento.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -95,6 +100,7 @@ remove-vehicle <chassi>
 **search-vehicle:**
 Busca um veículo no programa, admitindo o chassi do veículo como argumento. A busca retornará uma lista de informações sobre o veículo: concessionária a que pertence, marca, preço, chassi, ano de fabricação e atributo especial (ex: modelo, para uma Moto). 
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): número de chassi não encontrado. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -104,6 +110,7 @@ search-vehicle <chassi>
 **list-concessionaria:**
 Busca uma concessionária no programa, admitindo o nome da concessionoária como argumento. A busca retornará uma lista de informações sobre a concessionária: nome, quantidade de veículos cadastrados para cada tipo e seus preços totais acumulados, e o valor total de veículos para a concessionária.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
@@ -114,6 +121,7 @@ list-concessionaria <nome da concessionária>
 **raise-price:**
 Aumenta os preços dos veículos em uma concessionária, admitindo, como argumento, o nome da concessionária e um número real representando uma porcentagem. Os preços dos carros, motos e caminhões na concessionária serão aumentados em \[X, 2X, 3X\]\% respectivamente, onde X é o número digitado.
 O programa impedirá o comando de ser finalizado na(s) seguinte(s) condição(ões): nome de concessionária não encontrado. O erro será indicado de acordo com o problema ocorrido.
+
 Sintaxe:
 
 ```
